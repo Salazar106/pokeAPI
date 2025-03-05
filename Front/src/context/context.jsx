@@ -1,13 +1,11 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import AuthService from "../services/AuthService";
 import AdminService from "../services/AdminService";
-import SalesService from "../services/SalesService";
 
 const MyContext = createContext();
 
 function ContextProvider({ children }) {
     const $Auth = useMemo(() => new AuthService(), []);
-    const $Sales = useMemo(() => new SalesService(), []);
 
     // Carga inicial del usuario
     const [actualUser, setActualUser] = useState(() => {
@@ -95,7 +93,6 @@ function ContextProvider({ children }) {
             value={{
                 $Auth,
                 $Admin,
-                $Sales,
                 actualUser,
                 setActualUser,
                 accessToken,
