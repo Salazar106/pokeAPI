@@ -7,7 +7,7 @@ npm install
 
 ## Tenemos que tener un servicio de Mysql para poder generar migraciones
 # debemos de poner las varianles de entorno en un archivo .env
-
+```bash
 PORT=3000
 MAILER_HOST=smtp.gmail.com
 MAILER_PORT=465
@@ -17,6 +17,7 @@ JWT_SECRET=c7e8352bc9ec5c7b9ab6613a066a0ec5340fe6bbdffb4d086a633d88ff9a7901
 DATABASE_URL="mysql://root:@localhost:3306/Pokeapi"   // importante cambiarlo por la URL de tu base de datos
 FRONTEND_URL=http://localhost:5173
 BACKEND_URL=http://localhost:3000/api
+```
 
 ### Generamos migraciones, depues de --name agregar el nombre de la migracion que deseamos generar:
 ```bash
