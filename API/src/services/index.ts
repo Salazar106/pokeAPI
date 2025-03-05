@@ -1,10 +1,10 @@
 import * as authServices from "./auth";
 import * as emailServices from "./email";
-import * as usersServices from './users'
+import * as pokemonServices from './pokemons'
 
 
 export { 
     authServices, 
     emailServices, 
-    usersServices,
+    pokemonServices
 };

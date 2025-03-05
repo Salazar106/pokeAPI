@@ -15,7 +15,7 @@ export default class AdminService {
         return this.token ? { Authorization: `Bearer ${this.token}` } : {};
     }
 
-    async getAllUsers( page, limit, searchTerm ) {
+    async getMyPokemon( page, limit, searchTerm ) {
         return axios.get(`${this.API_URL}/admin/allUsers`, {
             params: { page, limit, searchTerm }, // parámetros
             headers: this.getAuthHeaders() // Invocar el token 
