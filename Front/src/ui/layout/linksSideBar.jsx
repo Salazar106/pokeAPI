@@ -13,14 +13,9 @@ export default function LinkSideBar() {
   //!links para el sideBar cuando el usuario tiene rol Cliente
   const ClientLinks = [
     {
-      name: "My History",
-      icon: <img src={'/imgs/mistico.png'} className="w-10" />,
-      path: "/pokeApi/",
-    },
-    {
         name: "Search by name",
         icon: <img src={'/imgs/instinto.png'} className="w-10" />,
-        path: "/pokeApi/searchByName",
+        path: "/pokeApi/",
     },
     {
       name: "Search by ID",

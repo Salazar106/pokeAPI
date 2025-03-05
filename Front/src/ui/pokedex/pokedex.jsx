@@ -1,94 +1,50 @@
-// src/components/Pokedex.js
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import PokemonCard from './pokemonCards';
+import { PokemonCard } from "./pokemonCards";
 
-const Pokedex = () => {
-  const [pokemonList, setPokemonList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(false);
+// eslint-disable-next-line react/prop-types
+export const Pokedex = ({ pokemonsData, setPage, page, totalPages, totalPokemons }) => {
+    // Función para ir a la página anterior
+    const goToPreviousPage = () => {
+        if (page > 0) {
+            setPage(page - 1);
+        }
+    };
 
-  const fetchPokemon = async (page) => {
-    setLoading(true);
-    try {
-      const limit = 20; // Número de Pokémon por página
-      const offset = (page - 1) * limit;
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
-      );
+    // Función para ir a la página siguiente
+    const goToNextPage = () => {
+        if (page < totalPages - 1) {
+            setPage(page + 1);
+        }
+    };
 
-      // Obtener detalles de cada Pokémon
-      const pokemonData = await Promise.all(
-        response.data.results.map(async (pokemon) => {
-          const pokemonDetail = await axios.get(pokemon.url);
-          return pokemonDetail.data;
-        })
-      );
+    return (
+        <div className="pokedex">
+            <h1>total caputed: {totalPokemons}</h1>
+            <div className="pokemon-list flex flex-wrap gap-5">
+                {pokemonsData && pokemonsData.map((pokemon) => (
+                    <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                ))}
+            </div>
 
-      setPokemonList(pokemonData);
-      setTotalPages(Math.ceil(response.data.count / limit)); // Calcular el total de páginas
-    } catch (error) {
-      console.error('Error fetching Pokémon data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchPokemon(currentPage);
-  }, [currentPage]);
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Pokédex</h1>
-      <div className="flex flex-wrap justify-center">
-        {pokemonList.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </div>
-
-      {/* Paginación */}
-      <div className="flex justify-center mt-6">
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1 || loading}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2 disabled:bg-gray-300"
-        >
-          Anterior
-        </button>
-        <span className="text-lg mx-4">
-          Página {currentPage} de {totalPages}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages || loading}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-2 disabled:bg-gray-300"
-        >
-          Siguiente
-        </button>
-      </div>
-
-      {/* Mostrar carga */}
-      {loading && (
-        <div className="text-center mt-4">
-          <p>Cargando Pokémon...</p>
+            {/* Controles de paginación */}
+            <div className="pagination-controls mt-5 flex justify-center gap-3">
+                <button
+                    onClick={goToPreviousPage}
+                    disabled={page === 0}
+                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+                >
+                    {'<'}
+                </button>
+                <span className="px-4 py-2">
+                    Page {page + 1} of {totalPages}
+                </span>
+                <button
+                    onClick={goToNextPage}
+                    disabled={page === totalPages - 1}
+                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+                >
+                    {">"}
+                </button>
+            </div>
         </div>
-      )}
-    </div>
-  );
+    );
 };
-
-export default Pokedex;

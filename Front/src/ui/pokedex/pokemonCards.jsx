@@ -1,22 +1,19 @@
-// src/components/PokemonCard.js
-import React from 'react';
+import React from "react";
 
-const PokemonCard = ({ pokemon }) => {
-  return (
-    <div className="border border-gray-200 rounded-lg shadow-md p-4 m-2 w-48 text-center">
-      <img
-        src={pokemon.sprites.front_default}
-        alt={pokemon.name}
-        className="w-24 h-24 mx-auto"
-      />
-      <h2 className="text-xl font-bold capitalize mt-2">{pokemon.name}</h2>
-      <p className="text-sm text-gray-600">
-        Type: {pokemon.types.map((type) => type.type.name).join(', ')}
-      </p>
-      <p className="text-sm text-gray-600">Height: {pokemon.height}</p>
-      <p className="text-sm text-gray-600">Weight: {pokemon.weight}</p>
-    </div>
-  );
+export const PokemonCard = ({ pokemon }) => {
+    return (
+        <div className="border-2 border-gray-500 rounded-md shadow-lg min-w-56 flex flex-col justify-center items-center bg-slate-300">
+            <img src={pokemon.image} alt={pokemon.name} />
+            <h2 className="font-extrabold">{pokemon.name}</h2>
+            <div>
+                <p>ID: {pokemon.id}</p>
+                <p>Tipos: {pokemon.types.join(", ")}</p>
+                <p>HP: {pokemon.stats.hp}</p>
+                <p>Ataque: {pokemon.stats.attack}</p>
+                <p>Velocidad: {pokemon.stats.speed}</p>
+
+            </div>
+        </div>
+    );
 };
 
-export default PokemonCard;

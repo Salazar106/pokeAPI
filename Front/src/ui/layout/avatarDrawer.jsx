@@ -17,14 +17,10 @@ export default function AvatarDrawer() {
       Navigate('/auth/login');
   }
 
-    //?Validacion que identifica el tipo de usuario y lo redirecciona segun corresponda
-    const goProfile = () => {
-      user.role =="Admin" ? Navigate("/admin/profile") : Navigate("/client/profile")
-    } 
-
+   
   return (
     <div className="flex items-center gap-4">
-          <img src={!user?.avatar?userLogo:user.avatar||""} className="w-20 h-20 p-2 rounded-full " alt="user-avatar" />
+          <img src={'/imgs/pikachu.png'} className="w-20 h-20 p-2 rounded-full " alt="user-avatar" />
           <div className="hidden sm:flex sm:flex-col">
             <p className="text-white font-bold ">{user?.name||"hola "}</p>
             <p className="text-white">{user?.email||"hola@hola.com"}</p>
@@ -36,10 +32,7 @@ export default function AvatarDrawer() {
         <DropdownTrigger>
             <Button isIconOnly className="bg-transparent focus:outline-none hover:border-[#b34eda] hover:scale-150 transition-all duration-500"><FaAngleDown className="text-white"/></Button>
         </DropdownTrigger>
-        <DropdownMenu aria-label="User Actions" variant="flat">
-          <DropdownItem color="primary" onClick={goProfile} startContent={<FaUserGear className="text-xl text-default-500"/>}>
-                Mi Perfil {user?.role}
-          </DropdownItem>       
+        <DropdownMenu aria-label="User Actions" variant="flat">       
           <DropdownItem  color="danger" onClick={handleLogout} startContent={<FaPowerOff className=""/>}>
                 Cerrar Sesión
           </DropdownItem>
