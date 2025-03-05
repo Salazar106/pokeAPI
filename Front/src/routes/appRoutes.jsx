@@ -5,7 +5,6 @@ import { RecoverPasswordPage } from '../pages/auth/recoverPassword';
 import { ForgotPasswordPage } from '../pages/auth/forgotPasswordPage';
 import LayoutAdmin from '../pages/admin/layout';
 
-import { ProfilePage } from '../pages/profile';
 import { PageNotFound } from '../pages/pageNotFound';
 import { MyContext } from '../context/context';
 import { useContext } from 'react';
@@ -44,13 +43,12 @@ const AppRoutes = () => {
       <Route path='/auth/restorePassword' element={<PrivateRoute element={<RecoverPasswordPage />} meta={['HIDE_FOR_AUTH']} />} />
 
       {/* Rutas protegidas */}
-      <Route path='/pokeApi'>
+      <Route path='/pokeApi/'>
         <Route element={<LayoutAdmin />}>
-          <Route path='searchByName' element={<PrivateRoute element={<SearchByName />} meta={['REQUIRES_AUTH']} />} />
+          <Route path='' element={<PrivateRoute element={<SearchByName />} meta={['REQUIRES_AUTH']} />} />
           <Route path='searchByID' element={<PrivateRoute element={<SearchById />} meta={['REQUIRES_AUTH']} />} />
           <Route path='History' element={<PrivateRoute element={<SearchById />} meta={['REQUIRES_AUTH']} />} />
          
-          <Route path='profile' element={<PrivateRoute element={<ProfilePage />} meta={['REQUIRES_AUTH']} />} />
         </Route>
       </Route>
 

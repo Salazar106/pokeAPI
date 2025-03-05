@@ -17,6 +17,7 @@ export const GetPokemonsFromAPI = async (req: Request, res: Response): Promise<a
 
 export const createPokemon = async (req: Request, res: Response): Promise<any> => {
     try{
+        // console.log(req.body)
 
         const newPokemon = await pokemonServices.createPokemon(req.body)
         return res.status(200).json({message: 'New pokemon in our pokedex', newPokemon});

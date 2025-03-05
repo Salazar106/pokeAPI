@@ -15,41 +15,32 @@ export default class AdminService {
         return this.token ? { Authorization: `Bearer ${this.token}` } : {};
     }
 
-    async getMyPokemon( page, limit, searchTerm ) {
-        return axios.get(`${this.API_URL}/admin/allUsers`, {
-            params: { page, limit, searchTerm }, // parámetros
-            headers: this.getAuthHeaders() // Invocar el token 
-        });
+    async getMyPokemon(page, pageSize) {
+        console.log(this.getAuthHeaders());
+        return axios.post(
+            `${this.API_URL}/poke/myPokemons`,
+            {}, // Cuerpo de la solicitud (vacío en este caso)
+            {
+                params: { page, pageSize }, // Parámetros de consulta
+                headers: this.getAuthHeaders() // Encabezados
+            }
+        );
     }
 
-    async getAllClients( page, limit, searchTerm ) {
-        return axios.get(`${this.API_URL}/admin/allClients`, {
-            params: { page, limit, searchTerm }, // parámetros
-            headers: this.getAuthHeaders() // Invocar el token 
-        });
+    async findProkemon( identifier ) {
+        return axios.post(`${this.API_URL}/poke/getFromApi`, 
+            {identifier}, // Cuerpo de la solicitud (vacío en este caso)
+            {
+                headers: this.getAuthHeaders() // Encabezados
+            });
     }
 
-    async deleteUser(idUser) {
-        return axios.delete(`${this.API_URL}/admin/deleteUser`, {
-            params: { id: idUser },
-            headers: this.getAuthHeaders() // Invoca la función aquí
-        });
+    async CreatePokemon(data) {
+        return axios.post(`${this.API_URL}/poke/create`, 
+            {data}, // Cuerpo de la solicitud (vacío en este caso)
+            {
+                headers: this.getAuthHeaders() // Encabezados
+            });
     }
-
-    async updateUserStatus(data) {
-        return axios.post(`${this.API_URL}/profile/updateUserStatus`,data,{ headers: this.getAuthHeaders() } );
-    }
-
-    async salesStatusChart(data) {
-        return axios.get(`${this.API_URL}/charts/salesStatusInform`, {
-            params: data, // Enviar los datos como query params
-            headers: this.getAuthHeaders(), // Encabezados de autenticación
-        });
-    }
-
-    async salesDataChart() {
-        return axios.get(`${this.API_URL}/charts/salesInform`, {
-            headers: this.getAuthHeaders(), // Encabezados de autenticación
-        });
-    }
+   
 }
