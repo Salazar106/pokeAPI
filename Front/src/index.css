@@ -1,0 +1,51 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:weight;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+/* Para navegadores WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* Ancho del scrollbar */
+  background: transparent; /* Fondo transparente */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b34eda; /* Color del thumb (parte que se mueve) */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b34eda; /* Color del thumb al pasar el mouse */
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin; /* Ancho del scrollbar */
+  scrollbar-color: #b34eda transparent; /* Color del thumb y fondo */
+}
+
+/* Ocultar las flechas (solo para WebKit) */
+::-webkit-scrollbar-button {
+  display: none; /* Oculta las flechas */
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
