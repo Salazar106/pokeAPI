@@ -96,7 +96,7 @@ export const validateEmailController = async (req: Request, res: Response): Prom
         const decodedToken = await decodeJWT(req.query.token as string)
         const verify = await authServices.VerifyEmailService(decodedToken.email)
         if (!verify) { return res.status(404).json({ message: 'Token invalido o caducado' })}
-        const frontendUrl = `https://youtube.com/`; // ! poner ruta del front 
+        const frontendUrl = `${process.env.FRONTEND_URL}`; // ! poner ruta del front 
         return res.redirect(frontendUrl);    
     } catch (error:any) {
         console.log(error);

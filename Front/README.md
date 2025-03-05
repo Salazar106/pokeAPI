@@ -1,8 +1,19 @@
-# React + Vite
+## Generalidades del FRONT
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# para correr el proyecto del Front solo debemos instalar dependencias con 
+```bash
+npm install
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# luego ejecutamos el proyecto con 
+```bash
+npm run dev
+```
+
+# tenemos un usuario de acceso pero solo funcionara luego de tener el backend funcionado y con migraciones realizadas.
+
+email:  "pokemon@gmail.com"
+password:  "User123."
+
+# se tendran acceso a dos rutas, una para buscar pokemon por nombre y otra por id
