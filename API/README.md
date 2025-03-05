@@ -1,12 +1,12 @@
 ## Generalidades del BACK 
 
-# para correr el proyecto del Front solo debemos instalar dependencias con 
+# para correr el proyecto del Back solo debemos instalar dependencias con 
 ```bash
 npm install
 ```
 
 ## Tenemos que tener un servicio de Mysql para poder generar migraciones
-# debemos de poner las varianles de entorno 
+# debemos de poner las varianles de entorno en un archivo .env
 
 PORT=3000
 MAILER_HOST=smtp.gmail.com
@@ -22,11 +22,11 @@ BACKEND_URL=http://localhost:3000/api
 ```bash
 npx prisma migrate dev --name name_migrate  
 ```
-## en caso de no hacer la migracion de los datos ejecutar:
+## Para generar la semilla con nuestro usuario de prueba 'pokemon@gmail.com' 'User123.' usamos este comando, sino creamos un usuario por la plataforma:
 ```bash
 npm run seed
 ```
-### Prisma studio for manage DB
+### Prisma studio for manage DB nos arroja una interfaz web para administrar la base de datos si lo desamos.
 ```bash
 npx prisma studio 
 ```
@@ -35,3 +35,5 @@ npx prisma studio
 ```bash
 npm run dev
 ```
+# si nos aparece este mensaje como este significa que todo está funcionando correctamente:
+Server running on http://localhost:3000 👌
